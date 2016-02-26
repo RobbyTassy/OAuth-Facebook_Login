@@ -4,7 +4,10 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+<fb:login-button scope="public_profile,email, user_friends"
+onlogin="checkLoginState();"
+data-auto-logout-link="true">
+<!-- ^^ automatically creates a log out button upon logging in -->
 </fb:login-button>
 
 <div id="status">
