@@ -75,3 +75,31 @@
           'Thanks for logging in, ' + response.name + '!';
       });
     }
+
+    function ready() {
+      $('#token-transfer-link').click(function(evt) {
+        evt.preventDefault();
+        token = FB.getAccessToken();
+          if (token) {
+            window.location = $(evt.target).attr('href') + '?token=' + token;
+          } else {
+            alert('Please login to Facebook first.')
+          }
+        });
+
+        $('#login-link').click(function(evt) {
+          evt.preventDefault();
+
+          FB.login(function(response) {
+            var ar = response.authResponse;
+            var token = ar.accessToken;
+            if (token) {
+              window.location = $(evt.target).attr('href') + '?token=' + token;
+            } else {
+              alert("Please login to Facebook first")
+            }
+        });
+
+      });
+    };
+    $(document).on('ready page:load', ready);
